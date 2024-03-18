@@ -1,0 +1,26 @@
+name: Reuben's Tenable WAS Build Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Or whichever branch you want to trigger the pipeline
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Copy API Keys to secret storage
+      run: |
+        # Copy your generated API keys to your preferred secret storage provider here
+        
+    - name: Pull Tenable/WAS Scanner Docker image
+      run: docker pull tenable/was-scanner:latest
+
+    - name: Run Tenable/WAS Scanner
+      run: |
+        docker run -e WAS_MODE=cicd \
+                   -e ACCESS_KEY=eb825519ff68def20507d1813ca225d0319ee279d819d1e5b23b4495fb040838 \
+                   -e SECRET_KEY=cc88031fbd5eba554c47926412f59c6b0e7c2da57d2098e782a9dbb079d9991a \
+                   -v $PWD:/scanner \
+                   tenable/was-scanner:latest
