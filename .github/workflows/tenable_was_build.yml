@@ -22,7 +22,4 @@ jobs:
         docker run -e WAS_MODE=cicd \
                    -e ACCESS_KEY=eb825519ff68def20507d1813ca225d0319ee279d819d1e5b23b4495fb040838 \
                    -e SECRET_KEY=cc88031fbd5eba554c47926412f59c6b0e7c2da57d2098e782a9dbb079d9991a \
-                   -v ./:/scanner tenable/was-scanner:latest
-
-              
-
+                   -v $(pwd)/.github/workflows/tenable_was.conf:/scanner/tenable_was.conf tenable/was-scanner:latest
